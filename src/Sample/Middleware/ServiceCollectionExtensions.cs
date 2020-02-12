@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sample.Common.Settings;
 
@@ -8,7 +9,7 @@ namespace Sample.Middleware
     {
         internal static IServiceCollection RegisterServices(this IServiceCollection services)
         {
-            // services.AddTransient<IEngine, Engine>();
+            services.AddSingleton<ITelemetryInitializer, CustomTelemetryInitializer>();
 
             return services;
         }

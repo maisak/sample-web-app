@@ -21,6 +21,7 @@ namespace Sample
             services.AddControllersWithViews(); 
             services.RegisterServices();
             services.RegisterConfigs(Configuration);
+            services.AddApplicationInsightsTelemetry();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
