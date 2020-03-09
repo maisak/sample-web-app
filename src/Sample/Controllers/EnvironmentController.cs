@@ -1,13 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sample.Common.Toolbox;
+using System.Threading.Tasks;
 
 namespace Sample.Controllers
 {
     public class EnvironmentController : Controller
     {
-        [HttpGet]
-        public IActionResult Index()
+        private readonly IKeyVault _vault;
+        public string Message { get; set; }
+
+        public EnvironmentController(IKeyVault vault)
         {
+            _vault = vault;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            ViewData["SecretValue"] = await _vault.GetSecret("SampleAppSecret");
             ViewData["InstanceId"] = EnvironmentConfig.InstanceId;
             ViewData["IsStaging"] = EnvironmentConfig.IsStaging;
             ViewData["Settable"] = EnvironmentConfig.Settable;

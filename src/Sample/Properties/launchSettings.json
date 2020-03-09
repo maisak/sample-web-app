@@ -19,6 +19,7 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
+        "KEY_VAULT_URL": "https://keys-common.vault.azure.net",
         "ASPNETCORE_ENVIRONMENT": "Development",
         "INSTANCE_ID": "test-id-dev-machine"
       },

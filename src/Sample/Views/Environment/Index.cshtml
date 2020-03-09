@@ -4,11 +4,12 @@
 
 <h2>Environment variables:</h2>
 
+<h5>Secret from KeyVault: </h5><p>@ViewData["SecretValue"]</p>
 <h5>Instance Id: </h5><p>@ViewData["InstanceId"]</p>
 <h5>Is staging: </h5><p>@ViewData["IsStaging"]</p>
 <h5>Settable: </h5>
 @using (Html.BeginForm())
 {
-    <input type="text" name="value" value="@ViewData["Settable"]"/>
+    <input type="text" name="value" value="@ViewData["Settable"]" />
     <input type="submit" />
 }

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sample.Common.Settings;
+using Sample.Common.Toolbox;
 
 namespace Sample.Middleware
 {
@@ -10,6 +11,7 @@ namespace Sample.Middleware
         internal static IServiceCollection RegisterServices(this IServiceCollection services)
         {
             services.AddSingleton<ITelemetryInitializer, CustomTelemetryInitializer>();
+            services.AddSingleton<IKeyVault, AzureKeyVault>();
 
             return services;
         }
