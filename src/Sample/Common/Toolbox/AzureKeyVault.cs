@@ -15,11 +15,11 @@ namespace Sample.Common.Toolbox
             _keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
         }
 
-        public async Task<string> GetSecret(string value)
+        public async Task<string> GetSecret(KeyVaultSecrets secret)
         {
-            var secret = await _keyVaultClient.GetSecretAsync($"{_keyVaultUrl}/secrets/{value}")
+            var secretValue = await _keyVaultClient.GetSecretAsync($"{_keyVaultUrl}/secrets/{secret}")
                     .ConfigureAwait(false);
-            return secret.Value;
+            return secretValue.Value;
         }
     }
 }
