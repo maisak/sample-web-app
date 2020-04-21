@@ -2,21 +2,24 @@
 
 namespace Sample.Common.Toolbox
 {
-    public static class EnvironmentConfig
+    internal static class EnvironmentConfig
     {
-        private const string IsStagingName = "IS_STAGING";
-        private const string InstanceIdName = "INSTANCE_ID";
-        private const string SettableName = "SETTABLE_VARIABLE";
-        private const string KeyVaultUrlName = "KEY_VAULT_URL";
-
-        public static string Settable
+        internal static string Settable
         {
-            get => Environment.GetEnvironmentVariable(SettableName);
-            set => Environment.SetEnvironmentVariable(SettableName, value);
+            get => Environment.GetEnvironmentVariable(EnvironmentVariables.Settable);
+            set => Environment.SetEnvironmentVariable(EnvironmentVariables.Settable, value);
         }
 
-        public static string InstanceId => Environment.GetEnvironmentVariable(InstanceIdName);
-        public static string KeyVaultUrl => Environment.GetEnvironmentVariable(KeyVaultUrlName);
-        public static bool IsStaging => Environment.GetEnvironmentVariable(IsStagingName) == bool.TrueString;
+        internal static string InstanceId => Environment.GetEnvironmentVariable(EnvironmentVariables.InstanceId);
+        internal static string KeyVaultUrl => Environment.GetEnvironmentVariable(EnvironmentVariables.KeyVaultUrl);
+        internal static bool IsStaging => Environment.GetEnvironmentVariable(EnvironmentVariables.IsStaging) == bool.TrueString;
+    }
+
+    internal struct EnvironmentVariables
+    {
+        internal const string IsStaging  = "IS_STAGING";
+        internal const string InstanceId  = "INSTANCE_ID";
+        internal const string Settable  = "SETTABLE_VARIABLE";
+        internal const string KeyVaultUrl  = "KEY_VAULT_URL";
     }
 }

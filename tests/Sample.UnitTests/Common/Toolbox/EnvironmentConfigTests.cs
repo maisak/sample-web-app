@@ -10,13 +10,22 @@ namespace Sample.UnitTests.Common.Toolbox
         private const string InstanceIdValue = "test-instance-key";
         private const string SettableGetValue = "test-settable-get";
         private const string SettableSetValue = "test-settable-set";
+        private const string KeyVaultUrlValue = "test-url";
 
         [OneTimeSetUp]
         public void Setup()
         {
-            Environment.SetEnvironmentVariable("IS_STAGING", bool.TrueString);
-            Environment.SetEnvironmentVariable("INSTANCE_ID", InstanceIdValue);
-            Environment.SetEnvironmentVariable("SETTABLE_VARIABLE", SettableGetValue);
+            Environment.SetEnvironmentVariable(EnvironmentVariables.IsStaging, bool.TrueString);
+            Environment.SetEnvironmentVariable(EnvironmentVariables.InstanceId, InstanceIdValue);
+            Environment.SetEnvironmentVariable(EnvironmentVariables.Settable, SettableGetValue);
+            Environment.SetEnvironmentVariable(EnvironmentVariables.KeyVaultUrl, KeyVaultUrlValue);
+        }
+
+        [Test]
+        public void KeyVaultUrlTest()
+        {
+            var keyVaultUrl = EnvironmentConfig.KeyVaultUrl;
+            Assert.AreEqual(keyVaultUrl, KeyVaultUrlValue);
         }
 
         [Test]
