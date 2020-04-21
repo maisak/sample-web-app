@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sample.Common.Settings;
+using Sample.Common.Toolbox.Logger;
 using Sample.Models;
 using System.Diagnostics;
 
@@ -9,10 +9,10 @@ namespace Sample.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger _logger;
         private readonly SampleSettings _sampleSettings;
 
-        public HomeController(ILogger<HomeController> logger,
+        public HomeController(ILogger logger,
                               IOptions<SampleSettings> sampleSettings)
         {
             _logger = logger;
@@ -21,6 +21,7 @@ namespace Sample.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogEvent("Page", "Home page loaded");
             return View();
         }
 

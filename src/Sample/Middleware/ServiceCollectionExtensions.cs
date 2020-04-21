@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sample.Common.Settings;
 using Sample.Common.Toolbox;
+using Sample.Common.Toolbox.Logger;
 
 namespace Sample.Middleware
 {
@@ -11,6 +12,7 @@ namespace Sample.Middleware
         internal static IServiceCollection RegisterServices(this IServiceCollection services)
         {
             services.AddSingleton<ITelemetryInitializer, CustomTelemetryInitializer>();
+            services.AddSingleton<ILogger, AppInsightsLogger>();
             services.AddSingleton<IKeyVault, AzureKeyVault>();
 
             return services;
