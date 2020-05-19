@@ -17,7 +17,7 @@ namespace Sample.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            ViewData["SecretValue"] = await _vault.GetSecret("SampleAppSecret");
+            ViewData["SecretValue"] = await _vault.GetSecret(KeyVaultSecrets.SampleAppSecret);
             ViewData["InstanceId"] = EnvironmentConfig.InstanceId;
             ViewData["IsStaging"] = EnvironmentConfig.IsStaging;
             ViewData["Settable"] = EnvironmentConfig.Settable;
